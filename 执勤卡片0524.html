@@ -429,7 +429,7 @@ if(name.indexOf(ql)>=0)matches.push(cards[i]);
 if(matches.length===0){sug.classList.remove("show");hideAll();count.textContent="共 "+total+" 人 · 直接输入姓名";noRes.style.display="block";return;}
 noRes.style.display="none";
 if(matches.length===1&&matches[0].getAttribute("data-name")===ql){
-sug.classList.remove("show");showCard(matches[0]);
+sug.classList.remove("show");showCard(matches[0]);count.textContent="共 "+total+" 人 · 直接输入姓名";
 }else{
 hideAll();
 var html="";
@@ -443,11 +443,13 @@ sug.innerHTML=html;sug.classList.add("show");
 input.addEventListener("blur",function(){setTimeout(function(){sug.classList.remove("show");},200);});
 input.addEventListener("focus",function(){if(this.value.trim())this.dispatchEvent(new Event("input"));});
 function selectName(n){
-input.value=n;
-var ql=n.toLowerCase();
+input.value=n.trim();
+var ql=n.trim().toLowerCase();
+var found=false;
 for(var i=0;i<cards.length;i++){
-if(cards[i].getAttribute("data-name")===ql){showCard(cards[i]);break;}
+if(cards[i].getAttribute("data-name")===ql){showCard(cards[i]);found=true;break;}
 }
+if(!found)hideAll();
 sug.classList.remove("show");
 }
 function showCard(card){
