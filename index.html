@@ -115,7 +115,7 @@
         async function loadLatestCard() {
             try {
                 // 获取仓库文件列表
-                const resp = await fetch('https://api.github.com/repos/BJATC/ATC.github.io/contents/');
+                const resp = await fetch('https://api.github.com/repos/BJATC/BJATC.github.io/contents/');
                 const files = await resp.json();
                 
                 // 过滤出执勤卡片文件，按日期排序
