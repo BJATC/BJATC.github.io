@@ -415,6 +415,7 @@ html+="<div class=suggestion-item>"+n+"</div>";
 sug.innerHTML=html;sug.classList.add("show");
 }
 });
+input.addEventListener("compositionend",function(){var ev=new Event("input");ev.target=this;this.dispatchEvent(ev);});
 input.addEventListener("blur",function(){setTimeout(function(){sug.classList.remove("show");},300);});
 input.addEventListener("focus",function(){if(this.value.trim())this.dispatchEvent(new Event("input"));});
 function handleClick(e){
